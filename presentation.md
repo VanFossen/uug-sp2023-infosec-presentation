@@ -1,8 +1,8 @@
 ---
 marp: true
 paginate: true
-theme: uncover
-# class: lead
+theme: gaia
+class: lead
 backgroundColor: #fff8e1
 color: #455a64
 ---
@@ -85,26 +85,70 @@ UUG Spring 2023
 
 ---
 
+## Types of Ciphers
+
+- Block
+
+- Stream
+
+---
+
 ## Types of Encryption
 
-- Symmetric
+- Symmetric (one key)
 
-- Asymmetric
+- Asymmetric (two keys)
 
 ---
 
 ## Symmetric Encryption
 
+![width:1000px Basic image of symmetric key encryption](images/symmetric-encryption.png)
+
+---
+
+## Advanced Encryption Standard (AES)
+
 ---
 
 ## Asymmetric Encryption
 
+![Basic image of asymmetric key encryption](images/asymmetric-encryption.svg)
+
+---
+
+## Rivest-Shamir-Adleman (RSA)
+
+---
+
+## Elliptic-Curve Cryptography (ECC)
+
+---
+
+## Diffie-Hellman (DH)
+
 ---
 
 ## Hashing
+
+![Basic image of a cryptographic hashing algoriuthm](images/cryptographic-hashing-function.svg)
 
 ---
 
 ## Password cracking
 
 ---
+
+## References (1 of 2)
+
+- Stallings, William, and Lawrie Brown. Computer Security: Principles and Practice. 4th ed., Pearson, 2017.
+
+- Wikipedia contributors. "Symmetric-key algorithm." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 29 Mar. 2023. Web. 5 Apr. 2023.
+
+---
+
+## References (2 of 2)
+
+- Wikipedia contributors. "Public-key cryptography." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 22 Mar. 2023. Web. 5 Apr. 2023.
+
+- Wikipedia contributors. "Cryptographic hash function." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 9 Mar. 2023. Web. 5 Apr. 2023.
