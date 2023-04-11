@@ -13,7 +13,90 @@ UUG Spring 2023
 
 ---
 
-NOTE: Did not include key expansion steps/algorithms
+## Hashing
+
+![Basic image of a cryptographic hashing algorithm](images/cryptographic-hashing-function.svg)
+
+---
+
+## Password Hashing
+
+- password123
+
+- SHA-256
+
+  - ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f
+
+- password123D;%yL9TS:5PalS/d
+
+  - 9C9B913EB1B6254F4737CE947EFD16F16E916F9D6EE5C1102A2002E48D4C88BD
+
+- password123D;%yL9TS:5PalS/d + iterations
+
+  - fc91e3c64406e6afb456303d93ecb7c22b7f7ddb7f89d7e3ca52de8c10c16525
+
+---
+
+## Storing Hashed Passwords - LAN Manager
+
+- Morpheus:1010:B902F044A44585DF93E28745B8BF4BA6:D5D630DA69EBD8AB040D77BE7BB046DD:::
+
+- username:user_id:LM_hash:NTLM_hash
+
+- 14 character password
+
+  - Converted to uppercase
+  - Unused space filled with null bytes
+  - Split in half with parity character added (two 8-byte segments)
+  - Both halves are encrypted with DES and concatenated together
+
+---
+
+## Storing Hashed Passwords - New Technology LAN Manager
+
+- Morpheus:1002:aad3b435b51404eeaad3b435b51404ee:d5d630da69ebd8ab040d77be7bb046dd:::
+
+- username:user_id:LM_hash:NTLM_hash
+
+- 14 character password
+
+  - RC4 encryption
+
+---
+
+## Storing Hashed Passwords - sha512crypt
+
+- Morpheus:\$6\$ykumbyCz$kb1zUhrB3wROIN1uoI94gfmAMjlTeeVhKkEtEZHYeIFIqD6CBiAQAlFB9uqYHHVO1doCNJbV56tC4gJi/L0ng0:1001:1001::/home/morpheus:/bin/sh
+
+- username:hash_algorithm:user_id:group_id:home_directory:default_shell
+
+---
+
+## `man 5 crypt` - sha512crypt
+
+![width:1000px](images/hash-sha512crypt.png)
+
+---
+
+## `man 5 crypt` - yescrypt
+
+![width:1000px](images/hash-yescrypt.png)
+
+---
+
+## Password Hashing Explained
+
+- Hashing protects against dictionary attacks
+
+- Salts protect against rainbow tables
+
+  - Precomputed hashes
+
+- Iterations increase the computation time
+
+- Hash + Salt + Iterations:
+
+  - susceptible to dictionary attacks if the algorithm is known
 
 ---
 
@@ -32,25 +115,13 @@ NOTE: Did not include key expansion steps/algorithms
 
 ## Confidentiality
 
-- Data
-
-  - Assures that private or confidential information is not made available or disclosed to unauthorized individuals
-
-- Privacy
-
-  - Assures that individuals control or influence what information related to them may be collected and stored and by whom and to whom that information may be disclosed
+- Assures that private or confidential information is not made available or disclosed to unauthorized individuals
 
 ---
 
 ## Integrity
 
-- Data
-
-  - Assures that information and programs are changed only in a specified and authorized manner
-
-- System
-
-  - Assures that a system performs its intended function in an unimpaired manner, free from deliberate or inadvertent unauthorized manipulation of the system
+- Assures that information and programs are changed only in a specified and authorized manner
 
 ---
 
@@ -68,11 +139,15 @@ NOTE: Did not include key expansion steps/algorithms
 
 - Authenticity
 
-  - The property of being genuine and being able to be verified and trusted; confidence in the validity of a transmission, a message, or message originator
+  - The property of being genuine and being able to be verified and trusted
+
+    - Confidence in the validity of a transmission, a message, or message originator
 
 - Accountability
 
-  - The security goal that generates the requirement for actions of an entity to be traced uniquely to that entity. This supports non-repudiation, deterrence, fault isolation, intrusion detection and prevention, and after-action recovery and legal action.
+  - The security goal that generates the requirement for actions of an entity to be traced uniquely to that entity.
+
+    - Non-repudiation
 
 ---
 
@@ -281,6 +356,36 @@ NOTE: Did not include key expansion steps/algorithms
 
 ---
 
+## Diffie Hellman key exchange (DH)
+
+- An asymmetric-key protocol conceived by Ralph Merkle that was published by Whitfield Diffie and Martin Hellman in 1976.
+
+- Previously been discovered by a British intelligence agency in 1969.
+
+![bg right width:450px](images/dh-example.png)
+
+---
+
+## How DH Works (1 of 2)
+
+- Alice and Bob publicly agree to use the modulus p=23 and base g=5
+
+| Alice                               | Bob                             |
+| ----------------------------------- | ------------------------------- |
+| α = 4                               | β = 3                           |
+| A = gᵃ mod p                        | B = gᵇ mod p                    |
+| A = 5⁴ mod 23 = 625 mod 23 = 4      | B = 5³ mod 23 = 125 mod 23 = 10 |
+| sᵃ = Bᵃ mod p                       | sᵇ = Aᵇ mod p                   |
+| sᵃ = 10⁴ mod 23 = 10000 mod 23 = 18 | sᵇ = 4³ mod 23 = 64 mod 23 = 18 |
+
+---
+
+## How DH Works (2 of 2)
+
+![width:](images/dh-eve.png)
+
+---
+
 ## Rivest-Shamir-Adleman (RSA)
 
 - An asymmetric-key algorithm published in 1977 by Ron Rivest, Adi Shamir, and Leonard Adleman
@@ -290,7 +395,7 @@ NOTE: Did not include key expansion steps/algorithms
 
 ---
 
-## How RSA Works (1 of 2)
+## How RSA Works (1 of 3)
 
 - p, q : chosen random prime integers (private)
 - n : product of p and q, modulus for the public/private keys (public)
@@ -303,7 +408,7 @@ NOTE: Did not include key expansion steps/algorithms
 
 ---
 
-## How RSA Works (2 of 2)
+## How RSA Works (2 of 3)
 
 - Public key
 
@@ -328,8 +433,8 @@ NOTE: Did not include key expansion steps/algorithms
 
   - can check if co-prime using Euclid's Algorithm (GCD)
 
-- d = 5⁻¹ ((mod 24)) = 5
-  - can solve thus using Extended Euclid's Algorithm (XGCD)
+- d = 5⁻¹ mod 24 = 5
+  - can solve this using Extended Euclid's Algorithm (XGCD)
 
 ---
 
@@ -360,42 +465,101 @@ NOTE: Did not include key expansion steps/algorithms
 ## Elliptic-Curve Cryptography (ECC)
 
 - An asymmetric-key cryptography approach independently suggested by Neal Koblitz and Victor S. Miller in 1985.
-- Relies on the difficulty of finding specific points on the elliptic curve y² = x³ + ax + b
+- Relies on the discrete logarithm problem over the elliptic curve y² = x³ + ax + b
 - Elliptic-curve calculations are more computationally demanding allowing keys to be smaller than the equivalent RSA counterparts
 
 ---
 
-## How ECC Works
+## How ECC Works (1 of 4)
 
-![width:700px](images/ecc-math.png)
+- Publicly agreed on curve (a=2, b=2, q=17):
+  - y² = x³ + ax + b
+  - y² = x³ + 2x + 2
+- Publicly agreed on generator (G)
+  - G=(5,1)
+- Publicly agreed order of G (n)
+  - n = 19
+
+![bg right:40% width:500px](images/ecc-plain.jpg)
 
 ---
 
-more on ECC
+## How ECC Works (2 of 4)
+
+- G=(5,1)
+
+| Alice  | Bob    |
+| ------ | ------ |
+| α = 3  | β = 9  |
+| Α = 3G | Β = 9G |
+
+![bg left width:600px](images/ecc-point-addition.png)
+
+---
+
+## How ECC Works (3 of 4)
+
+- Alice (3G)
+
+  - G + G = 2G
+  - 2G + G = 3G (10,6)
+
+- Bob (9G)
+  - G + G = 2G
+  - 2G + 2G = 4G
+  - 4G + 4G = 8G
+  - 8G + G = 9G (7,6)
+
+![bg left width:600px](images/ecc-point-addition.png)
+
+---
+
+## How ECC Works (4 of 4)
+
+| Alice                               | Bob                                 |
+| ----------------------------------- | ----------------------------------- |
+| Α = 3G = (10,6)                     | Β = 9G = (7,6)                      |
+| αΒ = 3Β = 3(9G) = 27G = 8G = (13,7) | βΑ = 9Α = 9(3G) = 27G = 8G = (13,7) |
 
 ---
 
 ## Comparison of Symmetric and Asymmetric Algorithms
 
----
-
-## Quantum Threats
-
----
-
----
-
-## Hashing
-
-![Basic image of a cryptographic hashing algorithm](images/cryptographic-hashing-function.svg)
+| Security Bits | Symmetric Encryption Algorithm | RSA   | ECC |
+| ------------- | ------------------------------ | ----- | --- |
+| 80            |                                | 1024  | 160 |
+| 112           | 3DES                           | 2048  | 224 |
+| 128           | AES-128                        | 3072  | 256 |
+| 192           | AES-192                        | 7680  | 384 |
+| 256           | AES-256                        | 15360 | 512 |
 
 ---
 
-## Password cracking
+## Symmetric Encryption Quantum Threats
+
+- Grover's Algorithm
+
+  - A quantum brute-forcing algorithm that is effective against AES
+
+  - Takes AES from O(N) to O(√N)
+
+    - 2¹²⁸ → 2⁶⁴
+
+    - 2¹⁹² → 2⁹⁶
+
+    - 2²⁵⁶ → 2¹²⁸
 
 ---
 
-## References (1 of 5)
+## Asymmetric Encryption Quantum Threats
+
+- Shor's Algorithm
+
+  - A quantum algorithm for finding prime factors of an integer (DH, RSA) and discrete logarithms (ECC)
+
+---
+
+## References (1 of 6)
 
 - Stallings, William, and Lawrie Brown. Computer Security: Principles and Practice. 4th ed., Pearson, 2017.
 
@@ -403,7 +567,7 @@ more on ECC
 
 ---
 
-## References (2 of 5)
+## References (2 of 6)
 
 - Wikipedia contributors. "Public-key cryptography." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 22 Mar. 2023. Web. 5 Apr. 2023.
 
@@ -411,7 +575,7 @@ more on ECC
 
 ---
 
-## References (3 of 5)
+## References (3 of 6)
 
 - Adetunji, Daniel. “Symmetric and Asymmetric Key Encryption – Explained in Plain English.” FreeCodeCamp.org, FreeCodeCamp.org, 5 Apr. 2023, <https://www.freecodecamp.org/news/encryption-explained-in-plain-english/>.
 
@@ -419,7 +583,7 @@ more on ECC
 
 ---
 
-## References (4 of 5)
+## References (4 of 6)
 
 - Wikipedia contributors. "Data Encryption Standard." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 30 Mar. 2023. Web. 10 Apr. 2023.
 
@@ -429,8 +593,20 @@ more on ECC
 
 ---
 
-## References (5 of 5)
+## References (5 of 6)
 
 - Wikipedia contributors. "Advanced Encryption Standard." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 9 Mar. 2023. Web. 11 Apr. 2023.
 
+- Wikipedia contributors. "Diffie–Hellman key exchange." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 8 Apr. 2023. Web. 11 Apr. 2023.
+
 - Wikipedia contributors. "RSA (cryptosystem)." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 7 Apr. 2023. Web. 11 Apr. 2023.
+
+---
+
+## References (6 of 6)
+
+- Wikipedia contributors. "Elliptic-curve Diffie–Hellman." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 5 Feb. 2023. Web. 11 Apr. 2023.
+
+- Robert Pierce. "Elliptic Curve Diffie Hellman." YouTube. 10 Dec. 2014. <https://youtu.be/F3zzNa42-tQ>.
+
+- Wikipedia contributors. "Post-quantum cryptography." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 9 Apr. 2023. Web. 11 Apr. 2023.
