@@ -200,6 +200,40 @@ UUG Spring 2023
 
 ---
 
+## Electronic Codebook (ECB)
+
+![bg vertical right:55% width:750px](images/block-ecb.png)
+
+![bg right:55% width:750px](images/block-ecb-decryption.png)
+
+![width:400px](images/block-ecb-penguin.png)
+
+---
+
+## Cipher Block Chaining (CBC)
+
+- Duplicate data is not reflected in ciphertext
+
+- Malformed/incorrect blocks affect all following blocks
+
+![bg vertical right:60% width:750px](images/block-cbc.png)
+
+![bg  right:60% width:750px](images/block-cbc-decryption.png)
+
+---
+
+## Output feedback (OFB)
+
+- Can prepare encryption and decryption in advance
+
+- Malformed/incorrect blocks affect only the current block
+
+![bg vertical right:60% width:750px](images/block-ofb.png)
+
+![bg right:60% width:750px](images/block-ofb-decryption.png)
+
+---
+
 ## "Perfect" Encryption - One-Time Pad (OTP)
 
 - Major rules of OTP:
@@ -404,7 +438,7 @@ UUG Spring 2023
   - greater than one and less than the totient
   - co-prime to the totient
   - shares no common factors with the totient
-- d : calculated multiplicative inverse mod the totient (private)
+- d : calculated multiplicative inverse of e mod the totient (private)
 
 ---
 
@@ -521,6 +555,8 @@ UUG Spring 2023
 | Α = 3G = (10,6)                     | Β = 9G = (7,6)                      |
 | αΒ = 3Β = 3(9G) = 27G = 8G = (13,7) | βΑ = 9Α = 9(3G) = 27G = 8G = (13,7) |
 
+![width:500px](images/ecc-final.png)
+
 ---
 
 ## Comparison of Symmetric and Asymmetric Algorithms
@@ -564,6 +600,8 @@ UUG Spring 2023
 - Stallings, William, and Lawrie Brown. Computer Security: Principles and Practice. 4th ed., Pearson, 2017.
 
 - Wikipedia contributors. "Symmetric-key algorithm." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 29 Mar. 2023. Web. 5 Apr. 2023.
+
+- Wikipedia contributors. "Block cipher mode of operation." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 2 Apr. 2023. Web. 11 Apr. 2023.
 
 ---
 
