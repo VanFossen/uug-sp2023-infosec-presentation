@@ -429,7 +429,7 @@ UUG Spring 2023
 
 ---
 
-## How RSA Works (1 of 3)
+## How RSA Works (1 of 2)
 
 - p, q : chosen random prime integers (private)
 - n : product of p and q, modulus for the public/private keys (public)
@@ -442,7 +442,7 @@ UUG Spring 2023
 
 ---
 
-## How RSA Works (2 of 3)
+## How RSA Works (2 of 2)
 
 - Public key
 
