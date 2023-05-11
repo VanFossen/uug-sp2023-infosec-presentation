@@ -50,6 +50,8 @@ Since this presentation is not directly connected to Unix/Linux, I wanted to pro
 
 ## Breakdown of the topics
 
+Below is each topic I discussed and what I wanted to achieve with that topic
+
 ### The CIA Triad
 
 - Covers the general topics of Confidentiality, Integrity, and Availability. Discussed how the topics work in a way where its mostly pick two, but you cannot choose all three (typically).
@@ -143,3 +145,11 @@ Since this presentation is not directly connected to Unix/Linux, I wanted to pro
 - Onion Routing (ToR)
 
 - Passkeys (Passwordless logins)
+
+<!-- https://en.wikipedia.org/wiki/Attack_model -->
+
+- Cryptographic attack models
+  - Ciphertext-only attack
+  - Known-plaintext attack
+  - Chosen-plaintext attack
+  - etc.
